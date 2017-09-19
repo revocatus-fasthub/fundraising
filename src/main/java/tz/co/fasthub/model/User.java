@@ -51,7 +51,6 @@ public class User {
 	private String address;
 
 	@Column(name = "physical_address")
-	@NotEmpty(message = "*Please provide your physical address")
 	private String physicalAddress;
 
 	@Column(name = "city")
@@ -91,7 +90,6 @@ public class User {
 	private String refAddress;
 
 	@Column(name = "ref_phys_adrs")
-	@NotEmpty(message = "*Please provide your referee's physical address")
 	private String refPhysAddress;
 
 	@Column(name = "ref_city")
