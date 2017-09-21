@@ -1,4 +1,4 @@
-package tz.co.fasthub;
+package tz.co.fasthub.fundraising;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,12 +1,8 @@
-package tz.co.fasthub.model;
+package tz.co.fasthub.fundraising.model;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * Created by Revocatus Nyaindi on 9/12/2017.
@@ -22,22 +18,17 @@ public class User {
 	private int id;
 
 	@Column(name = "email")
-	@Email(message = "*Please provide a valid Email")
-	@NotEmpty(message = "*Please provide an email")
+//	@Email(message = "*Please provide a valid Email")
 	private String email;
 
 	@Column(name = "password")
-	@Length(min = 5, message = "*Your password must have at least 5 characters")
-	@NotEmpty(message = "*Please provide your password")
 	@Transient
 	private String password;
 
 	@Column(name = "name")
-	@NotEmpty(message = "*Please provide your name")
 	private String name;
 
 	@Column(name = "last_name")
-	@NotEmpty(message = "*Please provide your last name")
 	private String lastName;
 
 	@Column(name = "company_name")
@@ -46,23 +37,19 @@ public class User {
 	@Column(name = "position")
 	private String position;
 
-	@Column(name = "address")
-	@NotEmpty(message = "*Please provide your address")
-	private String address;
+/*	@Column(name = "address")
+	private String address;*/
 
 	@Column(name = "physical_address")
 	private String physicalAddress;
 
 	@Column(name = "city")
-	@NotEmpty(message = "*Please provide your current location")
 	private String city;
 
 	@Column(name = "country")
-	@NotEmpty(message = "*Please provide your country")
 	private String country;
 
 	@Column(name = "tel1")
-	@NotEmpty(message = "*Please provide your mobile number")
 	private String mobile1;
 
 	@Column(name = "tel2")
@@ -72,11 +59,9 @@ public class User {
 	private String mobile3;
 
 	@Column(name = "ref_first_name")
-	@NotEmpty(message = "*Please provide your referee's first name")
 	private String refFirstName;
 
 	@Column(name = "ref_last_name")
-	@NotEmpty(message = "*Please provide your referee's last name")
 	private String refLastName;
 
 	@Column(name = "ref_company")
@@ -86,22 +71,18 @@ public class User {
 	private String refPosition;
 
 	@Column(name = "ref_address")
-	@NotEmpty(message = "*Please provide your referee's address")
 	private String refAddress;
 
 	@Column(name = "ref_phys_adrs")
 	private String refPhysAddress;
 
 	@Column(name = "ref_city")
-	@NotEmpty(message = "*Please provide your referee's current location")
 	private String refCity;
 
 	@Column(name = "ref_country")
-	@NotEmpty(message = "*Please provide your referee's country")
 	private String refCountry;
 
 	@Column(name = "ref_tel1")
-	@NotEmpty(message = "*Please provide your referee's mobile number")
 	private String refMobile1;
 
 	@Column(name = "ref_tel2")
@@ -113,9 +94,15 @@ public class User {
 	@Column(name = "active")
 	private int active;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	/*@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
+*/
+
+	public User() {
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -173,6 +160,7 @@ public class User {
 		this.position = position;
 	}
 
+/*
 	public String getAddress() {
 		return address;
 	}
@@ -180,6 +168,7 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+*/
 
 	public String getPhysicalAddress() {
 		return physicalAddress;
@@ -324,6 +313,7 @@ public class User {
 	public void setActive(int active) {
 		this.active = active;
 	}
+/*
 
 	public Set<Role> getRoles() {
 		return roles;
@@ -332,5 +322,6 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+*/
 
 }

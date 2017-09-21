@@ -1,7 +1,7 @@
-package tz.co.fasthub.service;
+package tz.co.fasthub.fundraising.service;
 
 
-import tz.co.fasthub.model.Campaign;
+import tz.co.fasthub.fundraising.model.Campaign;
 
 /**
  * Created by Revocatus Nyaindi on 9/12/2017.

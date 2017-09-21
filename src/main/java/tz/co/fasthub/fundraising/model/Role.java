@@ -1,4 +1,4 @@
-package tz.co.fasthub.model;
+package tz.co.fasthub.fundraising.model;
 
 import javax.persistence.*;
 
