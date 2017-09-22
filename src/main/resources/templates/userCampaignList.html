@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>CrowdFunding | Campaigns</title>
+
+</head>
+<body>
+
+<div class="main-panel">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="header">
+                        <div th:fragment="header">
+
+                            <section>
+
+                                <div class="pull-right" style="padding-right: 4px">
+
+                                    <a th:action="@{/registration/new}"> Create an account</a> |
+
+                                    <a th:action="@{/fund/login}">Login</a>
+
+                                </div>
+                            </section>
+                        </div>
+
+
+                        <div class="content table-responsive table-full-width">
+                            <div th:if="${not #lists.isEmpty(campaigns)}"th:text="No Campaigns">
+                                <h3 th:text="${cam_name}"></h3>
+                                <!--image from uploaded file-->
+                                <img src="/static/images/beer.jpg" height="100" th:src="@{'/images/beer.jpg'}">
+
+                                <h4 th:text="${description}"></h4>
+                                Amount: <h4 th:text="${amount}"></h4>
+                                Start Date: <h4 th:text="${startDateTime}"></h4>
+                                End Date: <h4 th:text="${endDateTime}"></h4>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

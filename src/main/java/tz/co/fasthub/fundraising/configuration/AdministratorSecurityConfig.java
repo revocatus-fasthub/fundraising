@@ -61,10 +61,11 @@ public class AdministratorSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .contentTypeOptions();
 
         http    .authorizeRequests()
-
-                .antMatchers("/**").hasAnyRole("USER")
+                .antMatchers("/firstPage").permitAll()
+                .antMatchers("/**").hasRole("USER")
 //                .antMatchers("/survey/**").authenticated()
 //                .antMatchers("/survey/users**").hasRole("ADMIN")
+
 //                .anyRequest().authenticated().and()
                 .anyRequest().permitAll().and()
                 .formLogin()
@@ -90,9 +91,9 @@ public class AdministratorSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         //Web resources
         web.ignoring().antMatchers("/static/**");
-//        web.ignoring().antMatchers("/css/**");
+        web.ignoring().antMatchers("/css/**");
         //  web.ignoring().antMatchers("/scripts/**");
-//        web.ignoring().antMatchers("/images/**");
+        web.ignoring().antMatchers("/images/**");
     }
 
 

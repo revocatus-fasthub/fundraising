@@ -22,6 +22,7 @@ public class Campaign {
 
     private String description;
 
+    private String type;
     private BigDecimal amount;
 
     private String city;
@@ -72,5 +73,13 @@ public class Campaign {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

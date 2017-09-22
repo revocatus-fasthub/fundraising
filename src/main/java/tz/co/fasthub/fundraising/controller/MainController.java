@@ -38,6 +38,11 @@ public class MainController {
         return "/campaigns";
     }
 
+    @RequestMapping("/firstPage")
+    public String campaigns(){
+        return "userCampaignList";
+    }
+
 
     /**
      * path to display admin login page.
