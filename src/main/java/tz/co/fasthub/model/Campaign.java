@@ -1,8 +1,11 @@
 package tz.co.fasthub.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
-
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Revocatus Nyaindi on 9/12/2017.
@@ -20,11 +23,28 @@ public class Campaign {
 
     private String cam_name;
 
+    private String category;
+
+    private String type;
+
     private String description;
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date startDateTime;
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date endDateTime;
 
     private BigDecimal amount;
 
     private String city;
+
+    public boolean isSelected(Long campaignId){
+        if (campaignId != null) {
+            return campaignId.equals(id);
+        }
+        return false;
+    }
 
     public Integer getId() {
         return id;
@@ -50,6 +70,38 @@ public class Campaign {
         this.cam_name = cam_name;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Date getStartDateTime() {
+        return startDateTime;
+    }
+
+    public void setStartDateTime(Date startDateTime) {
+        this.startDateTime = startDateTime;
+    }
+
+    public Date getEndDateTime() {
+        return endDateTime;
+    }
+
+    public void setEndDateTime(Date endDateTime) {
+        this.endDateTime = endDateTime;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -72,5 +124,13 @@ public class Campaign {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Campaign() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+        setStartDateTime(calendar.getTime());
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+        setEndDateTime(calendar.getTime());
     }
 }
