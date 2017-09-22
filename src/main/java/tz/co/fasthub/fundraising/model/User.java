@@ -26,7 +26,7 @@ public class User {
 	@Column(name = "password")
 	@Transient
 	private String password;
-	
+
 	private String cpassword;
 
 	@Column(name = "name")
