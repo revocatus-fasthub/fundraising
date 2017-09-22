@@ -24,6 +24,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 public class AdministratorSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
+
     private UserDetailsService userDetailsService;
 
     private CustomAccessDeniedHandler accessDeniedHandler;
@@ -56,30 +57,30 @@ public class AdministratorSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+//        http    .headers().cacheControl().and().defaultsDisabled()
+//                .contentTypeOptions();
 
         http    .authorizeRequests()
-                .and()
 
-//                .antMatchers("/survey/users/**").hasAnyRole("ADMIN","ACTUATOR")
-//                .antMatchers("/fund/home").authenticated()
-//                .antMatchers("/**").authenticated()
-
+                .antMatchers("/**").hasAnyRole("USER")
+//                .antMatchers("/survey/**").authenticated()
 //                .antMatchers("/survey/users**").hasRole("ADMIN")
 //                .anyRequest().authenticated().and()
-//                .anyRequest().permitAll().and()
+                .anyRequest().permitAll().and()
                 .formLogin()
-                .loginPage("/crdb/login").permitAll().loginProcessingUrl("/login")
+                .loginPage("/fund/login").permitAll().loginProcessingUrl("/login")
                 .usernameParameter("username").passwordParameter("password")
-                .defaultSuccessUrl("/survey/index")
+                .defaultSuccessUrl("/admin/home")
                 .failureUrl("/login?error")
                 .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/crdb/login")
-//                .and()
-//                .exceptionHandling().accessDeniedPage("/403")
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/fund/login")
+
                 .and()
                 .csrf().disable();
 
-        http    .exceptionHandling().accessDeniedPage("/403");
+        http
+                .exceptionHandling().accessDeniedPage("/403");
+
 //        accessDeniedHandler(accessDeniedHandler);
 
     }
@@ -89,9 +90,9 @@ public class AdministratorSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         //Web resources
         web.ignoring().antMatchers("/static/**");
-        web.ignoring().antMatchers("/css/**");
+//        web.ignoring().antMatchers("/css/**");
         //  web.ignoring().antMatchers("/scripts/**");
-        web.ignoring().antMatchers("/images/**");
+//        web.ignoring().antMatchers("/images/**");
     }
 
 
@@ -103,4 +104,5 @@ public class AdministratorSecurityConfig extends WebSecurityConfigurerAdapter {
     public void setAccessDeniedHandler(CustomAccessDeniedHandler accessDeniedHandler) {
         this.accessDeniedHandler = accessDeniedHandler;
     }
+
 }

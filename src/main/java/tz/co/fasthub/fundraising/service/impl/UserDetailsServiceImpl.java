@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import tz.co.fasthub.fundraising.model.Administrator;
-import tz.co.fasthub.fundraising.repository.AdministratorRepository;
+import tz.co.fasthub.fundraising.model.User;
+import tz.co.fasthub.fundraising.repository.UserRepository;
 
 /**
  * Created by naaminicharles on 9/21/17.
@@ -19,23 +19,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private static final Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
 
-    private final AdministratorRepository administratorRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserDetailsServiceImpl(AdministratorRepository administratorRepository) {
-        this.administratorRepository = administratorRepository;
+    public UserDetailsServiceImpl(UserRepository administratorRepository) {
+        this.userRepository = administratorRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-            Administrator administrator = administratorRepository.findByUsername(username);
-            if (administrator == null) {
-                logger.debug("administrator not found with the provided username");
+            User user = userRepository.findByUsername(username);
+            if (user == null) {
+                logger.debug("user not found with the provided username");
                 throw new UsernameNotFoundException("User not found");
             }
-            logger.debug(" administrator from username " + administrator.toString());
-            return administrator;
+            logger.debug(" user from username " + user.toString());
+            return user;
   }
 
 }

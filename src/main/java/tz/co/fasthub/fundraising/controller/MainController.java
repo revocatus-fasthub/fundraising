@@ -20,13 +20,24 @@ public class MainController {
 
     @RequestMapping("/fund/home")
     public String index(){
-        return "index";
+        return "home";
     }
 
     @RequestMapping("/landingPage")
     public String adminsLandingPage(){
         return "adminsLandingPage";
     }
+
+    @RequestMapping(value = "/403")
+    public String exceptionalHandling(){
+        return "403";
+    }
+
+    @RequestMapping("campaigns")
+    public String campaignList(){
+        return "/campaigns";
+    }
+
 
     /**
      * path to display admin login page.

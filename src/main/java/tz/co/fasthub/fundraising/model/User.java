@@ -1,16 +1,22 @@
 package tz.co.fasthub.fundraising.model;
 
 import org.springframework.data.annotation.Transient;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Created by Revocatus Nyaindi on 9/12/2017.
  */
 
 @Entity
+
 @Table(name = "user")
-public class User {
+public class User implements UserDetails{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -100,6 +106,8 @@ public class User {
 
 	private String role;
 
+	private boolean enabled;
+
 	/*
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -107,6 +115,7 @@ public class User {
 */
 
 	public User() {
+        enabled = true;
 	}
 
 
@@ -119,7 +128,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getPassword() {
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Arrays.asList(new SimpleGrantedAuthority(role));
+    }
+
+    public String getPassword() {
 		return password;
 	}
 
@@ -333,6 +347,34 @@ public class User {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return isEnabled();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -344,6 +386,7 @@ public class User {
     public void setCpassword(String cpassword) {
         this.cpassword = cpassword;
     }
+
 
 /*
 	public Set<Role> getRoles() {
