@@ -1,8 +1,10 @@
 package tz.co.fasthub.model;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
@@ -129,8 +131,8 @@ public class Campaign {
     public Campaign() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, 1);
-        setStartDateTime(calendar.getTime());
+//        setStartDateTime(calendar.getTime());
         calendar.add(Calendar.DAY_OF_MONTH, 1);
-        setEndDateTime(calendar.getTime());
+//        setEndDateTime(calendar.getTime());
     }
 }
