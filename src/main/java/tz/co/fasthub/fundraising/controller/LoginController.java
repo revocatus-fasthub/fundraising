@@ -54,19 +54,19 @@ public class LoginController {
 		redirectAttributes.addFlashAttribute("successMessage", "User has been registered successfully.");
 		model.addAttribute("user", new User());
 
-		return "redirect:/fund/home";
+		return "redirect:/admin/home";
 	}
 	
 	@RequestMapping(value="/admin/home", method = RequestMethod.GET)
 	public String home(@ModelAttribute("administrator") User administrator, Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		administrator = userService.findUserByEmail(auth.getName());
-		model.addAttribute("userName", "Welcome " + administrator.getName() + " " + administrator.getLastName() + " (" + administrator.getEmail() + ")");
+//		model.addAttribute("userName", "Welcome " + administrator.getName() + " " + administrator.getLastName() + " (" + administrator.getEmail() + ")");
    //     model.addAttribute("userName", "Welcome " + administrator);
 
         model.addAttribute("campaign", new Campaign());
 
-		return "admin/home";
+		return "home";
 	}
 
 	@RequestMapping(value = "/campaigns", method = RequestMethod.POST)

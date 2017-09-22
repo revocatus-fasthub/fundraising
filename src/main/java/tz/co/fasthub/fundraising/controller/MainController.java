@@ -23,6 +23,11 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping("/landingPage")
+    public String adminsLandingPage(){
+        return "adminsLandingPage";
+    }
+
     /**
      * path to display admin login page.
      */

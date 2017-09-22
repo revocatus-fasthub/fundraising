@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Admin Page</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+
+		<br/><br/>
+		<form th:action="@{/logout}" method="get">
+			<button class="btn btn-md btn-danger btn-block" name="registration" type="Submit">Logout</button>
+		</form>
+
+		<div class="panel-group" style="margin-top:40px">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<span >Create Campaign</span>
+				</div>
+
+				<!--<p class="admin-message-text text-center" th:utext="${adminMessage}"></p>-->
+			</div>
+		</div>
+
+
+		<div>
+			<form class="form-horizontal" th:object="${campaign}" th:action="@{/campaigns}" method="post">
+				<input type="hidden" th:field="*{id}"/>
+				<input type="hidden" th:field="*{version}"/>
+
+				<div class="form-group">
+						<input type="text" th:field="*{cam_name}" placeholder="Campaign Name" class="form-control" />
+						<label th:if="${#fields.hasErrors('cam_name')}" th:errors="*{cam_name}" class="validation-message"></label>
+				</div>
+
+				<div class="form-group">
+						<input type="text" th:field="*{description}" placeholder="Description" class="form-control" />
+						<label	th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="validation-message"></label>
+				</div>
+
+				<div class="form-group">
+						<input type="text" th:field="*{amount}" placeholder="Target Amount" class="form-control" />
+						<label	th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" class="validation-message"></label>
+				</div>
+
+				<div class="form-group">
+						<input type="text" th:field="*{city}" placeholder="City" class="form-control" />
+						<label	th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="validation-message"></label>
+				</div>
+
+				<!--<div class="form-group">-->
+						<!--<input type="text" th:field="*{message}" placeholder="Marketing Message" class="form-control" />-->
+						<!--<label	th:if="${#fields.hasErrors('message')}" th:errors="*{message}" class="validation-message"></label>-->
+				<!--</div>-->
+
+				<div class="row">
+					<button type="submit" class="btn btn-default">Submit</button>
+				</div>
+			</form>
+		</div>
+
+
+	</div>
+</body>
+</html>

@@ -21,9 +21,13 @@ public class User {
 //	@Email(message = "*Please provide a valid Email")
 	private String email;
 
+	private String username;
+
 	@Column(name = "password")
 	@Transient
 	private String password;
+	
+	private String cpassword;
 
 	@Column(name = "name")
 	private String name;
@@ -94,7 +98,10 @@ public class User {
 	@Column(name = "active")
 	private int active;
 
-	/*@ManyToMany(cascade = CascadeType.ALL)
+	private String role;
+
+	/*
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
 */
@@ -313,8 +320,32 @@ public class User {
 	public void setActive(int active) {
 		this.active = active;
 	}
-/*
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getCpassword() {
+        return cpassword;
+    }
+
+    public void setCpassword(String cpassword) {
+        this.cpassword = cpassword;
+    }
+
+/*
 	public Set<Role> getRoles() {
 		return roles;
 	}

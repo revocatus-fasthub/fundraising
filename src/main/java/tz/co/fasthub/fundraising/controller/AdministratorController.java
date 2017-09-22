@@ -30,7 +30,7 @@ public class AdministratorController {
                 admin.setUsername("admin");
                 admin.setPassword("admin");
                 admin.setCpassword("admin");
-//                admin.setRole("ROLE_ADMIN");
+                admin.setRole("ROLE_ADMIN");
                 administratorService.save(admin);
             }
         };

@@ -20,16 +20,18 @@ public class Administrator implements UserDetails {
     public String username;
     public String password;
     public String cpassword;
+    public String role;
 
     private boolean enabled;
 
     public Administrator() {
     }
 
-    public Administrator(String username, String password, String cpassword) {
+    public Administrator(String username, String password, String cpassword, String role) {
         this.username = username;
         this.password = password;
         this.cpassword = cpassword;
+        this.role = role;
     }
 
     @Override
@@ -101,5 +103,13 @@ public class Administrator implements UserDetails {
 
     public void setCpassword(String cpassword) {
         this.cpassword = cpassword;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

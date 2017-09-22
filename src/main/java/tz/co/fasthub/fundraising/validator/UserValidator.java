@@ -27,11 +27,13 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         User user = (User) o;
 
+        /*validate first name*/
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "NotEmpty");
             if (user.getName().length() < 6 || user.getName().length() > 32) {
                 errors.rejectValue("name", "Size.userForm.name");
             }
 
+        /*validate email*/
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
             if (user.getEmail().isEmpty()) {
                 errors.rejectValue("email", "Size.userForm.email");
@@ -41,15 +43,23 @@ public class UserValidator implements Validator {
                 errors.rejectValue("email", "Duplicate.userForm.email");
             }
 
+        /*validate username*/
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"username","NotEmpty");
+           if(userService.findUserByUsername(user.getUsername()) != null){
+               errors.rejectValue("username", "Duplicate.userForm.username");
+           }
+
+        /*validate password and confirm password*/
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
             if (user.getPassword().length() < 6 || user.getPassword().length() > 32) {
                 errors.rejectValue("password", "Size.userForm.password");
             }
 
-     /*   if (!user.getCpassword().equals(user.getPassword())) {
-            errors.rejectValue("cpassword", "Diff.userForm.passwordConfirm");
-        }
-*/
+            if (!user.getCpassword().equals(user.getPassword())) {
+                errors.rejectValue("cpassword", "Diff.userForm.passwordConfirm");
+            }
+
+
 /*
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "role", "NotEmpty");
         if (user.getRole().isEmpty()) {
