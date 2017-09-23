@@ -76,7 +76,7 @@ public class LoginController {
 		return "admin/home";
 	}
 
-	@RequestMapping(value = "/campaigns", method = RequestMethod.POST)
+	@RequestMapping(value = "/campaignshow", method = RequestMethod.POST)
 	public String saveCampaign(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, Campaign campaign, Model model) {
 
 		if (file.isEmpty()) {
@@ -97,9 +97,9 @@ public class LoginController {
 		}
 
 		campaignService.saveCampaign(campaign);
-		model.addAttribute("campaigns", campaignService.listAllCampaigns());
+		model.addAttribute("campaignshow", campaignService.listAllCampaigns());
 
-		return "campaigns";
+		return "campaignshow";
 	}
 
 
