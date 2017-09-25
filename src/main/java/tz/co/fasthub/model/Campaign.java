@@ -131,7 +131,7 @@ public class Campaign {
     public Campaign() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, 1);
-//        setStartDateTime(calendar.getTime());
+        setStartDateTime(calendar.getTime());
         calendar.add(Calendar.DAY_OF_MONTH, 1);
 //        setEndDateTime(calendar.getTime());
     }
