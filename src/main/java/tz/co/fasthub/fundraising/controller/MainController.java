@@ -18,9 +18,14 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class MainController {
 
+    @RequestMapping("/fund/main")
+    public String showLandingPage(){
+        return "mainPage";
+    }
+
     @RequestMapping("/fund/home")
     public String index(){
-        return "home";
+        return "index";
     }
 
     @RequestMapping("/landingPage")

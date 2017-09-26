@@ -61,8 +61,8 @@ public class AdministratorSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .contentTypeOptions();
 
         http    .authorizeRequests()
-                .antMatchers("/firstPage").permitAll()
-                .antMatchers("/**").hasRole("USER")
+                .antMatchers("/fund/main").permitAll()
+//                .antMatchers("/**").hasRole("USER")
 //                .antMatchers("/survey/**").authenticated()
 //                .antMatchers("/survey/users**").hasRole("ADMIN")
 
@@ -71,7 +71,7 @@ public class AdministratorSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/fund/login").permitAll().loginProcessingUrl("/login")
                 .usernameParameter("username").passwordParameter("password")
-                .defaultSuccessUrl("/admin/home")
+                .defaultSuccessUrl("/fund/home")
                 .failureUrl("/login?error")
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/fund/login")

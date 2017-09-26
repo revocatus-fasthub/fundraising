@@ -1,47 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Admin Page</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<head lang="en">
+
+    <title>Campaign Lists</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
-
-    <br/><br/>
-    <form th:action="@{/logout}" method="get">
-        <button class="btn btn-md btn-danger btn-block" name="registration" type="Submit">Logout</button>
-    </form>
-
-    <div class="panel-group" style="margin-top:40px">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <span th:utext="${userName}">Campaigns</span>
-            </div>
-
-            <!--<p class="admin-message-text text-center" th:utext="${adminMessage}"></p>-->
-        </div>
-    </div>
-
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <div th:if="${not #lists.isEmpty(campaigns)}">
-        <h2>Campaigns List</h2><br/>
+        <h2>Campaign Lists</h2>
         <table class="table table-striped">
             <tr>
                 <th>Id</th>
                 <th>Campaign Name</th>
-                <th>Description</th>
+                <th>Category</th>
+                <th>Type</th>
+                <th>Start Date</th>
+                <th>End Date</th>
                 <th>Target Amount</th>
                 <th>City</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
-
             <tr th:each="campaign : ${campaigns}">
                 <td th:text="${campaign.id}"><a href="/campaign/${campaign.id}">Id</a></td>
-                <td th:text="${campaign.cam_name}">campaign name</td>
-                <td th:text="${campaign.description}">descirption</td>
+                <td th:text="${campaign.cmpgn_name}">cmpgn_name</td>
+                <td th:text="${campaign.category}">category</td>
+                <td th:text="${campaign.type}">type</td>
+                <td th:text="${campaign.startDateTime}">startDateTime</td>
+                <td th:text="${campaign.endDateTime}">endDateTime</td>
                 <td th:text="${campaign.amount}">amount</td>
-                <td th:text="${campaign.city}">amount</td>
+                <td th:text="${campaign.city}">city</td>
+                <td><a th:href="${ '/campaign/' + campaign.id}">View</a></td>
+                <td><a th:href="${'/campaign/edit/' + campaign.id}">Edit</a></td>
+                <td><a th:href="${'/campaign/delete/' + campaign.id}">Delete</a></td>
             </tr>
         </table>
 

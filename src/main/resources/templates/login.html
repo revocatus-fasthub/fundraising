@@ -1,39 +1,23 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-
-<!--<head>
-	<title>Spring Security Tutorial</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>-->
-
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<link rel="icon" href="favicon.ico" />
 
 	<title>User Login</title>
 
-	<!-- Bootstrap core CSS -->
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
-			integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-			crossorigin="anonymous" />
-
-	<link th:href="@{css/style.css}" rel="stylesheet" />
+	<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 
-<body class="gray-bg">
-	<form th:action="@{/registration}" method="get">
+<body>
+<!--class="gray-bg"-->
+
+<div class="container">
+<!--/*/ <th:block th:include="fragments/mainHeader :: mainHeader"></th:block> /*/-->
+
+	<!--<form th:action="@{/registration}" method="get">
 		<button class="btn btn-md btn-warning btn-block" type="Submit">Create an account</button>
 	</form>
-	
+	-->
 	<div class="middle-box text-center loginscreen animated fadeInDown">
 		<img th:src="@{/images/login.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo" />
 
@@ -55,26 +39,34 @@
 			<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 
 			<input type="password"  placeholder="Password" id="password" name="password" class="form-control" /> <br />
-				
 
 
-			<button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
-			<!--<h4 class="text-center"><a href="@{/registration}">Create an account</a></h4>-->
+
+            <button class="btn btn-lg btn-primary " name="Submit" value="Login" type="Submit" th:text="Login"></button>
+
+            <a href="/registration/new" th:href="@{'/registration/new'}" class="btn btn-secondary">Create Account</a>
+
 		</form>
-	</div>
 
-	<!-- jQuery-->
+
+
+
+	</div>
+<!--
+
+	&lt;!&ndash; jQuery&ndash;&gt;
 	<script
 			src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-	<!-- Bootstrap -->
+	&lt;!&ndash; Bootstrap &ndash;&gt;
 	<script
 			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 			integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 			crossorigin="anonymous"></script>
 
-	<!-- Bootstrap Validator plugin -->
+	&lt;!&ndash; Bootstrap Validator plugin &ndash;&gt;
 	<script src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
-
+-->
+</div>
 </body>
 </html>
