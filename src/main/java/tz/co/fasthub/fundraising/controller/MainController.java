@@ -18,19 +18,16 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class MainController {
 
+/*
     @RequestMapping("/fund/main")
     public String showLandingPage(){
         return "mainPage";
     }
+*/
 
     @RequestMapping("/fund/home")
     public String index(){
         return "index";
-    }
-
-    @RequestMapping("/landingPage")
-    public String adminsLandingPage(){
-        return "adminsLandingPage";
     }
 
     @RequestMapping(value = "/403")
@@ -43,10 +40,12 @@ public class MainController {
         return "/campaigns";
     }
 
+/*
     @RequestMapping("/firstPage")
     public String campaigns(){
         return "userCampaignList";
     }
+*/
 
 
     /**

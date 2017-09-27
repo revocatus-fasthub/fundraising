@@ -2,6 +2,8 @@ package tz.co.fasthub.fundraising.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tz.co.fasthub.fundraising.model.Campaign;
+import tz.co.fasthub.fundraising.model.User;
 import tz.co.fasthub.fundraising.service.CampaignService;
+import tz.co.fasthub.fundraising.service.UserService;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,6 +30,14 @@ public class CampaignController {
     private static String UPLOADED_FOLDER = "F://UPLOADS//";
 
     private CampaignService campaignService;
+    private final UserService userService;
+
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+    @Autowired
+    public CampaignController(UserService userService) {
+        this.userService = userService;
+    }
 
     @Autowired
     public void setCampaignService(CampaignService campaignService) {
@@ -39,30 +52,41 @@ public class CampaignController {
         return "campaigns";
     }
 
-//    View a specific campaign by its id.
-    @RequestMapping("campaign/{id}")
-    public String showCampaign(@PathVariable Integer id, Model model) {
-        model.addAttribute("campaign", campaignService.getCampaignById(id));
+//    View a specific campaign by its userId.
+    @RequestMapping("campaign/{userId}")
+    public String showCampaign(@PathVariable Integer userId, Model model) {
+        model.addAttribute("campaign", campaignService.getCampaignByUserId(userId));
         return "campaignshow";
     }
 
-    // Edit Campaign
+    // Edit existing Campaign
     @RequestMapping("campaign/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
-        model.addAttribute("campaign", campaignService.getCampaignById(id));
+        model.addAttribute("campaign", campaignService.getCampaignByUserId  (id));
         return "campaignform";
     }
 
-//    New campaign.
-    @RequestMapping("campaign/new")
-    public String newCampaign(Model model) {
+//    create New campaign.
+    @RequestMapping("/campaign/create/{userId}")
+    public String newCampaign(@PathVariable Long userId, User user, Model model) {
+        user = userService.getUserById(userId);
+//        String authName = authentication.getName();
+//        User authName = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        String name = authName.getUsername(); //get logged in username
+//        if (name.equals(user.getUsername())){
         model.addAttribute("campaign", new Campaign());
-        return "campaignform";
+//        model.addAttribute("user", name);
+            return "campaignform";
+//        }
+//        return "redirect:/fund/home";
     }
 
 //    Save campaign to database.
-    @RequestMapping(value = "campaign", method = RequestMethod.POST)
-    public String saveCampaign(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, Campaign campaign) {
+    @RequestMapping(value = "/campaign/{userId}", method = RequestMethod.POST)
+    public String saveCampaign(@PathVariable Long userId, @Valid Campaign campaign, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+
+     User id = userService.getUserById(userId);
+
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("flash.message", "Please select a file to Upload");
             return "campaign";
@@ -80,8 +104,9 @@ public class CampaignController {
             e.printStackTrace();
         }
 
-        campaignService.saveCampaign(campaign);
-        return "redirect:/campaign/" + campaign.getId();
+        campaignService.saveCampaignByUserId(campaign, id);
+
+        return "redirect:/campaign/" +id+ campaign.getId();
     }
 
 //    Delete campaign by its id.

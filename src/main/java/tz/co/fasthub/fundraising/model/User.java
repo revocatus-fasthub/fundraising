@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Revocatus Nyaindi on 9/12/2017.
@@ -21,7 +22,7 @@ public class User implements UserDetails{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
-	private int id;
+	private Long id;
 
 	@Column(name = "email")
 //	@Email(message = "*Please provide a valid Email")
@@ -108,6 +109,10 @@ public class User implements UserDetails{
 
 	private boolean enabled;
 
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	private List<Campaign> campaign;
+
+
 	/*
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -120,11 +125,11 @@ public class User implements UserDetails{
 
 
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -385,6 +390,14 @@ public class User implements UserDetails{
 
     public void setCpassword(String cpassword) {
         this.cpassword = cpassword;
+    }
+
+    public List<Campaign> getCampaign() {
+        return campaign;
+    }
+
+    public void setCampaign(List<Campaign> campaign) {
+        this.campaign = campaign;
     }
 
 

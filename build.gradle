@@ -36,6 +36,7 @@ dependencies {
 	compile group: 'org.json', name: 'json', version: '20090211'
 	runtime('mysql:mysql-connector-java')
 	compile('org.springframework.boot:spring-boot-starter-security')
+	compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity4")
 	compile('org.springframework.boot:spring-boot-starter-mail')
 	// https://mvnrepository.com/artifact/com.nulab-inc/zxcvbn
 	compile group: 'com.nulab-inc', name: 'zxcvbn', version: '1.2.3'

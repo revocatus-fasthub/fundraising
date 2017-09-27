@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -12,8 +14,15 @@
     <div th:fragment="header">
             <section>
                 <div class="pull-right" style="padding-right:5px">
-                    <a  href="#"><i class="fa fa-unlock-alt"></i><span sec:authentication="name"></span></a> |
+
+                    <!--if user is not logged in, the following codes should display-->
+                    <a href="/registration/new" th:href="@{'/registration/new'}" sec:authorize="isAnonymous()"> <i class="fa fa-sign-in fa-fw" ></i> Create Account</a> |
+                    <a href="/fund/login" th:href="@{'/fund/login'}" sec:authorize="isAnonymous()" ><i class="fa fa-sign-in fa-fw" ></i> Login</a>
+
+                    <!--if user is logged in, this should display-->
+                    <a  href="#"><i class="fa fa-unlock-alt"></i><span sec:authorize="isAuthenticated()" sec:authentication="name" ></span></a> |
                     <a href="/logout" th:href="@{'/logout'}" sec:authorize="isAuthenticated()"><i class="fa fa-sign-out fa-fw" ></i> Logout</a>
+
                 </div>
             </section>
             <br/>
@@ -21,9 +30,9 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#" th:href="@{/fund/home}">CrowdFunding</a>
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
                         <li><a href="#" th:href="@{/campaigns}" sec:authorize="hasRole('ROLE_USER')">View Campaigns</a></li>
-                        <li><a href="#" th:href="@{/campaign/new}" sec:authorize="hasRole('ROLE_USER')">Create new campaign</a></li>
+                        <li><a href="#" th:href="@{'/campaign/create/' + user.id}" sec:authorize="hasRole('ROLE_USER')">Create new campaign</a></li>
                     </ul>
 
                 </div>

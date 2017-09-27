@@ -2,11 +2,7 @@ package tz.co.fasthub.fundraising.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -20,7 +16,7 @@ public class Campaign {
     @Version
     private Integer version;
 
-    private String cmpgn_name;
+    private String compaignName;
     private String category;
     private String type;
     private String description;
@@ -30,6 +26,13 @@ public class Campaign {
     private Date endDateTime;
     private BigDecimal amount;
     private String city;
+
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "userId")
+    private User user;
+
+    public Campaign() {
+    }
 
     public boolean isSelected(Long campaignId){
         if (campaignId != null) {
@@ -54,12 +57,12 @@ public class Campaign {
         this.id = id;
     }
 
-    public String getCmpgn_name() {
-        return cmpgn_name;
+    public String getCompaignName() {
+        return compaignName;
     }
 
-    public void setCmpgn_name(String cmpgn_name) {
-        this.cmpgn_name = cmpgn_name;
+    public void setCompaignName(String compaignName) {
+        this.compaignName = compaignName;
     }
 
     public String getCategory() {
@@ -116,5 +119,13 @@ public class Campaign {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

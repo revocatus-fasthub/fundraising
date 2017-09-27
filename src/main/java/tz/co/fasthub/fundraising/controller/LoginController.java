@@ -34,13 +34,16 @@ public class LoginController {
     }
 
 
+    /*display registration page*/
 	@RequestMapping(value="/registration/new", method = RequestMethod.GET)
 	public String registration(Model model) {
 		model.addAttribute("user", new User());
 
 		return "registration";
 	}
-	
+
+
+	/*process registration*/
 	@RequestMapping(value = "/process/registration", method = RequestMethod.POST)
 	public String registration(@Valid User user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 //		User userExists = userService.findUserByEmail(user.getEmail());
@@ -54,7 +57,7 @@ public class LoginController {
 		redirectAttributes.addFlashAttribute("successMessage", "User has been registered successfully.");
 		model.addAttribute("user", new User());
 
-		return "redirect:/admin/home";
+		return "redirect:/fund/home";
 	}
 	
 	@RequestMapping(value="/admin/home", method = RequestMethod.GET)
@@ -69,12 +72,12 @@ public class LoginController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/campaigns", method = RequestMethod.POST)
+/*	@RequestMapping(value = "/campaigns", method = RequestMethod.POST)
 	public String saveCampaign(Campaign campaign, Model model) {
-		campaignService.saveCampaign(campaign);
+		campaignService.saveCampaignByUserId(campaign);
 		model.addAttribute("campaigns", campaignService.listAllCampaigns());
 
 		return "campaigns";
-	}
+	}*/
 
 }

@@ -13,13 +13,14 @@
     <h2>Campaign Details</h2>
     <div class="row">
         <div class="col-md-10 col-md-offset-2">
-        <form class="form-horizontal" th:object="${campaign}" th:action="@{/campaign}" method="post" enctype="multipart/form-data">
+
+        <form class="form-horizontal" th:object="${campaign}" th:action="@{/campaign/{id}(id=${user.id})}" method="post" enctype="multipart/form-data">
             <input type="hidden" th:field="*{id}"/>
             <input type="hidden" th:field="*{version}"/>
             <div class="form-group">
                 <!--<label class="col-sm-2 control-label">Campaign Name:</label>-->
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{cmpgn_name}" placeholder="Campaign Tittle"/>
+                    <input type="text" class="form-control" th:field="*{compaignName}" placeholder="Campaign Tittle"/>
                 </div>
             </div>
 
@@ -45,7 +46,7 @@
                 <select aria-required="true" class="form-control" name="type" id="category" th:field="*{type}" >
                     <option value="" th:text="${'Select Fundraising Type'}"></option>
                     <option th:value="${'Public'}" th:selected="${campaign.isSelected(lastselected)}">Public</option>
-                    <option th:value="${'Closed'}" th:selected="${campaign.isSelected(lastselected)}">Closed</option>
+                    <option th:value="${'Private'}" th:selected="${campaign.isSelected(lastselected)}">Private</option>
                 </select>
             </div>
             </div>

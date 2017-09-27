@@ -27,7 +27,7 @@
             </tr>
             <tr th:each="campaign : ${campaigns}">
                 <td th:text="${campaign.id}"><a href="/campaign/${campaign.id}">Id</a></td>
-                <td th:text="${campaign.cmpgn_name}">cmpgn_name</td>
+                <td th:text="${campaign.compaignName}">compaignName</td>
                 <td th:text="${campaign.category}">category</td>
                 <td th:text="${campaign.type}">type</td>
                 <td th:text="${campaign.startDateTime}">startDateTime</td>

@@ -3,6 +3,7 @@ package tz.co.fasthub.fundraising.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tz.co.fasthub.fundraising.model.Campaign;
+import tz.co.fasthub.fundraising.model.User;
 import tz.co.fasthub.fundraising.repository.CampaignRepository;
 import tz.co.fasthub.fundraising.service.CampaignService;
 
@@ -25,12 +26,14 @@ public class CampaignServiceImpl implements CampaignService {
     }
 
     @Override
-    public Campaign getCampaignById(Integer id) {
-        return campaignRepository.findOne(id);
-    }
+    public Campaign getCampaignByUserId(Integer userId) {
+            return campaignRepository.findOne(userId);
+         }
+
 
     @Override
-    public Campaign saveCampaign(Campaign campaign) {
+    public Campaign saveCampaignByUserId(Campaign campaign, User userId) {
+        campaign.setUser(userId);
         return campaignRepository.save(campaign);
     }
 

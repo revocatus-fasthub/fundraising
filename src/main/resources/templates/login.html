@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 
-	<title>User Login</title>
+    <title>User Login</title>
 
-	<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 
 <body>
 <!--class="gray-bg"-->
 
 <div class="container">
-<!--/*/ <th:block th:include="fragments/mainHeader :: mainHeader"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 
-	<!--<form th:action="@{/registration}" method="get">
-		<button class="btn btn-md btn-warning btn-block" type="Submit">Create an account</button>
-	</form>
-	-->
-	<div class="middle-box text-center loginscreen animated fadeInDown">
-		<img th:src="@{/images/login.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo" />
+    <!--<form th:action="@{/registration}" method="get">
+        <button class="btn btn-md btn-warning btn-block" type="Submit">Create an account</button>
+    </form>
+    -->
+    <div class="col-md-6 col-md-offset-3">
+        <img th:src="@{/images/login.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo" />
 
-		<form th:action="@{/login}" th:object="${user}" th:value="${'/login'}" method="POST" class="form-signin">
-			<!--<h3 class="form-signin-heading" th:text="Welcome"></h3>-->
-			<br/>
+        <form th:action="@{/login}" th:object="${user}" th:value="${'/login'}" method="POST" class="form-signin">
+            <!--<h3 class="form-signin-heading" th:text="Welcome"></h3>-->
+            <br/>
 
             <div align="center" th:if="${param.logout}">
                 <div class="alert alert-success fade in ">
@@ -35,10 +35,10 @@
                 <p style="font-size: 20; color: #FF1C19; background: #be8da1">Email or Password invalid, please verify</p>
             </div>
 
-			<input type="text" id="email" name="email"  placeholder="Email/Username" class="form-control" /> <br/>
-			<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <input type="text" id="username" name="username"  placeholder="Username" class="form-control" /> <br/>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 
-			<input type="password"  placeholder="Password" id="password" name="password" class="form-control" /> <br />
+            <input type="password"  placeholder="Password" id="password" name="password" class="form-control" /> <br />
 
 
 
@@ -46,27 +46,27 @@
 
             <a href="/registration/new" th:href="@{'/registration/new'}" class="btn btn-secondary">Create Account</a>
 
-		</form>
+        </form>
 
 
 
 
-	</div>
-<!--
+    </div>
+    <!--
 
-	&lt;!&ndash; jQuery&ndash;&gt;
-	<script
-			src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        &lt;!&ndash; jQuery&ndash;&gt;
+        <script
+                src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-	&lt;!&ndash; Bootstrap &ndash;&gt;
-	<script
-			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-			integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-			crossorigin="anonymous"></script>
+        &lt;!&ndash; Bootstrap &ndash;&gt;
+        <script
+                src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+                crossorigin="anonymous"></script>
 
-	&lt;!&ndash; Bootstrap Validator plugin &ndash;&gt;
-	<script src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
--->
+        &lt;!&ndash; Bootstrap Validator plugin &ndash;&gt;
+        <script src="//cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+    -->
 </div>
 </body>
 </html>
