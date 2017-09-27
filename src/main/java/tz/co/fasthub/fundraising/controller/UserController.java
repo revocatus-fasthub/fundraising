@@ -19,7 +19,7 @@ import tz.co.fasthub.fundraising.validator.UserValidator;
 import javax.validation.Valid;
 
 @Controller
-public class LoginController {
+public class UserController {
 
 	private final UserService userService;
 
@@ -27,7 +27,7 @@ public class LoginController {
     private final UserValidator userValidator;
 
     @Autowired
-    public LoginController(UserService userService, CampaignService campaignService, UserValidator userValidator) {
+    public UserController(UserService userService, CampaignService campaignService, UserValidator userValidator) {
         this.userService = userService;
         this.campaignService = campaignService;
         this.userValidator = userValidator;
@@ -79,5 +79,16 @@ public class LoginController {
 
 		return "campaigns";
 	}*/
+
+
+    /*view all users*/
+/*
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
+
+	public String viewAllUsers(Model model){
+	    model.addAttribute("users", userService.findAllUsers());
+		return "userList";
+	}
+*/
 
 }

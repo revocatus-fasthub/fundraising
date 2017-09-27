@@ -13,7 +13,8 @@
 			<div class="col-md-6 col-md-offset-3">
 				<h3 th:if="${#vars['flash.message']}" th:text="${#vars['flash.message']}" class="alert alert-danger"></h3>
 
-				<form autocomplete="off" action="#" th:action="@{/process/registration}" th:object="${user}" method="post" class="form-horizontal" role="form">
+				<form autocomplete="off" action="#" th:action="@{/addUser}" th:object="${user}" method="post" class="form-horizontal" role="form">
+					<!--/process/registration-->
 					<h2>Registration Form</h2>
 					<div class="form-group">
 						<div class="col-sm-9">

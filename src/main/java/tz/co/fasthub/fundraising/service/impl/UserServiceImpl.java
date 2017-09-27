@@ -8,6 +8,8 @@ import tz.co.fasthub.fundraising.repository.RoleRepository;
 import tz.co.fasthub.fundraising.repository.UserRepository;
 import tz.co.fasthub.fundraising.service.UserService;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -28,7 +30,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void saveUser(User user) {
+	public User saveUser(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		user.setCpassword(bCryptPasswordEncoder.encode(user.getCpassword()));
         user.setActive(1);
@@ -36,6 +38,7 @@ public class UserServiceImpl implements UserService {
 /*        Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));*/
 		userRepository.save(user);
+		return user;
 	}
 
     @Override
@@ -46,6 +49,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(Long userId) {
         return userRepository.findOne(userId);
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
     }
 
 }
