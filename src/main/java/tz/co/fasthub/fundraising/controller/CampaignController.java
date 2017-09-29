@@ -27,7 +27,7 @@ import java.nio.file.Paths;
 @Controller
 public class CampaignController {
 
-    private static String UPLOADED_FOLDER = "F://UPLOADS//";
+    private static String UPLOADED_FOLDER = "/var/crowdFunding/UPLOADS";///var/crowdFunding/UPLOADS
 
     private CampaignService campaignService;
     private final UserService userService;
@@ -53,23 +53,24 @@ public class CampaignController {
     }
 
 //    View a specific campaign by its userId.
-    @RequestMapping("campaign/{userId}")
-    public String showCampaign(@PathVariable Integer userId, Model model) {
-        model.addAttribute("campaign", campaignService.getCampaignByUserId(userId));
+    @RequestMapping("campaign/{campaignId}")
+    public String showCampaign(@PathVariable Integer campaignId, Model model) {
+        model.addAttribute("campaign",campaignService.getCampaignByUserId(campaignId));//campaignService.getCampaignByUserId(userId)
+
         return "campaignshow";
     }
 
     // Edit existing Campaign
     @RequestMapping("campaign/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
-        model.addAttribute("campaign", campaignService.getCampaignByUserId  (id));
+        model.addAttribute("campaign", campaignService.getCampaignByUserId(id));
         return "campaignform";
     }
 
 //    create New campaign.
-    @RequestMapping("/campaign/create/{userId}")
-    public String newCampaign(@PathVariable Long userId, User user, Model model) {
-        user = userService.getUserById(userId);
+    @RequestMapping("/campaign/create")
+    public String newCampaign( User user, Model model) {
+//        user = userService.getUserById(userId);
 //        String authName = authentication.getName();
 //        User authName = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        String name = authName.getUsername(); //get logged in username
@@ -82,10 +83,12 @@ public class CampaignController {
     }
 
 //    Save campaign to database.
-    @RequestMapping(value = "/campaign/{userId}", method = RequestMethod.POST)
-    public String saveCampaign(@PathVariable Long userId, @Valid Campaign campaign, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+    @RequestMapping(value = "/campaign", method = RequestMethod.POST)
+    public String saveCampaign(@Valid Campaign campaign, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        User authName = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String name = authName.getUsername(); //get logged in username
 
-     User id = userService.getUserById(userId);
+         String usersID = userService.getUserIdByUsername(name);
 
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("flash.message", "Please select a file to Upload");
@@ -104,9 +107,9 @@ public class CampaignController {
             e.printStackTrace();
         }
 
-        campaignService.saveCampaignByUserId(campaign, id);
+        campaignService.saveCampaignByUserId(campaign, authName);
 
-        return "redirect:/campaign/" +id+ campaign.getId();
+        return "redirect:/campaign/" +usersID+ campaign.getId();
     }
 
 //    Delete campaign by its id.

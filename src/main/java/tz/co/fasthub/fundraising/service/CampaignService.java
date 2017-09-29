@@ -17,5 +17,5 @@ public interface CampaignService {
     Campaign saveCampaignByUserId(Campaign campaign, User userId);
 
     void deleteCampaign(Integer id);
-
+    
 }

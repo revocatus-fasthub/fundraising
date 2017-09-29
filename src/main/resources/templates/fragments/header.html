@@ -20,7 +20,7 @@
                     <a href="/fund/login" th:href="@{'/fund/login'}" sec:authorize="isAnonymous()" ><i class="fa fa-sign-in fa-fw" ></i> Login</a>
 
                     <!--if user is logged in, this should display-->
-                    <a href="/viewAllUsers" th:href="@{'/users'}" sec:authorize="isAuthenticated()">View Users</a> |
+                    <a href="/viewAllUsers" th:href="@{'/users'}" sec:authorize="isAuthenticated()" >View Users</a> |
                     <a  href="#"><i class="fa fa-unlock-alt"></i><span sec:authorize="isAuthenticated()" sec:authentication="name" ></span></a> |
                     <a href="/logout" th:href="@{'/logout'}" sec:authorize="isAuthenticated()"><i class="fa fa-sign-out fa-fw" ></i> Logout</a>
 
@@ -33,7 +33,7 @@
                     <a class="navbar-brand" href="#" th:href="@{/fund/home}">CrowdFunding</a>
                     <ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
                         <li><a href="#" th:href="@{/campaigns}" sec:authorize="hasRole('ROLE_USER')">View Campaigns</a></li>
-                        <li><a href="#" th:href="@{'/campaign/create/' + user.id}" sec:authorize="hasRole('ROLE_USER')">Create new campaign</a></li>
+                        <li><a href="#" th:href="@{'/campaign/create'}" sec:authorize="hasRole('ROLE_USER')">Create new campaign</a></li>
                     </ul>
 
                 </div>

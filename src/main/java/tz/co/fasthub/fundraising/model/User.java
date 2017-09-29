@@ -15,7 +15,6 @@ import java.util.List;
  */
 
 @Entity
-
 @Table(name = "user")
 public class User implements UserDetails{
 
@@ -119,13 +118,14 @@ public class User implements UserDetails{
 	private Set<Role> roles;
 */
 
+
 	public User() {
+        super();
         enabled = true;
 	}
 
 
-
-	public Long getId() {
+    public Long getId() {
 		return id;
 	}
 

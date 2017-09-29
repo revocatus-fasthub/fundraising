@@ -46,6 +46,7 @@ dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.5.4.RELEASE'
 // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.8'
+	compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.5.0')
 
 }
 

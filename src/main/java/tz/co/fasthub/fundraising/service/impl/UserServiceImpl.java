@@ -8,8 +8,6 @@ import tz.co.fasthub.fundraising.repository.RoleRepository;
 import tz.co.fasthub.fundraising.repository.UserRepository;
 import tz.co.fasthub.fundraising.service.UserService;
 
-import java.util.List;
-
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -52,7 +50,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAllUsers() {
+    public String getUserIdByUsername(String username) {
+        User userUsername = userRepository.findByUsername(username);
+        String hisId = String.valueOf(userUsername.getId());
+        return hisId;
+    }
+
+    @Override
+    public Iterable<User> findAllUsers() {
         return userRepository.findAll();
     }
 

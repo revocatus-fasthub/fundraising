@@ -1,5 +1,6 @@
 package tz.co.fasthub.fundraising.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class Campaign {
     private BigDecimal amount;
     private String city;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "userId")
     private User user;
